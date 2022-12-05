@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"poc-core-event-router/internals/pubsubService"
-	"strconv"
 	"time"
 
 	"cloud.google.com/go/pubsub"
