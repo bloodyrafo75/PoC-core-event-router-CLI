@@ -39,16 +39,12 @@ func Start(host string, projectId string, topicName string, PORT string) error {
 		}
 	}
 
-	fmt.Println("we have the Subscription ")
+	fmt.Println("Subscription ")
 	fmt.Println(sub)
 
-	//test permissions
-	//testPermissions(PROJECT_ID, TOPIC_NAME)
 	pullMsgs(ctx, *pubsubClient, subscriptionName)
 
-	//gorountines are cleaned up
 	topic.Stop()
-	//close connection
 	defer pubsubClient.Close()
 
 	return nil
@@ -63,7 +59,8 @@ func pullMsgs(ctx context.Context, client pubsub.Client, subID string) error {
 
 	err := sub.Receive(cctx, func(_ context.Context, msg *pubsub.Message) {
 		msg.Ack()
-		fmt.Println("Got message ("+subID+"): ", string(msg.ID), string(msg.ID), string(msg.Data))
+		fmt.Println("Got data")
+		fmt.Println(string(msg.Data))
 		fmt.Println("Got attributes ("+subID+"): ", msg.Attributes)
 	})
 	if err != nil {
