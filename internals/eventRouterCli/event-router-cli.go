@@ -58,10 +58,12 @@ func pullMsgs(ctx context.Context, client pubsub.Client, subID string) error {
 	defer cancel()
 
 	err := sub.Receive(cctx, func(_ context.Context, msg *pubsub.Message) {
-		msg.Ack()
-		fmt.Println("Got data")
+		msg.Ack()		
+		fmt.Println("")
+		fmt.Println("CLIENT LISTENER:: Data")
 		fmt.Println(string(msg.Data))
-		fmt.Println("Got attributes ("+subID+"): ", msg.Attributes)
+		fmt.Println("CLIENT LISTENER:: Attributes ("+subID+"): ", msg.Attributes)
+		fmt.Println("")
 	})
 	if err != nil {
 		return fmt.Errorf("sub.Receive: %v", err)
