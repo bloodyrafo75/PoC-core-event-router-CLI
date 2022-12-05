@@ -19,8 +19,8 @@ func Start(host string, projectId string, topicName string, PORT string) error {
 	ctx := context.Background()
 	pubsubClient, topic := pubsubService.GetPubsubConnectionToTopic(ctx, host, projectId, topicName)
 
-	timeStamp := time.Now().Unix()
-	subscriptionName := "subscription_" + strconv.FormatInt(timeStamp, 10)
+	//timeStamp := time.Now().Unix()
+	subscriptionName := "subscription_example" //+ strconv.FormatInt(timeStamp, 10)
 
 	sub := pubsubClient.Subscription(subscriptionName)
 	ok, err := sub.Exists(ctx)
